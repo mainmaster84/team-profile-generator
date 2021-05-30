@@ -143,7 +143,7 @@ Add a New Engineer
       }
     ])
     .then((answers) => {
-      const {name, id, email, github} = answers
+      const {name, id, email, github, confirmAddProject} = answers
       const engineer = new Engineer(name, id, email, github);
       teamArray.push(engineer);
       console.log(teamArray);
@@ -212,7 +212,7 @@ Add a New Intern
       },
       {
         type: 'confirm',
-        name: 'confirmAddProject',
+        name: 'confirmAddProject2',
         message:  'Would you like to add another Intern?',
         default: false
       }
