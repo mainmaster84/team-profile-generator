@@ -1,4 +1,5 @@
-const generateMarkdown = () => {
+const generateMarkdown = (teamArray) => {
+    console.log(teamArray);
   return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -13,38 +14,38 @@ const generateMarkdown = () => {
         </header>
         <main class="container">
             <div class="shadow col-md-3 card">
-                <div class="card-body p-3 mb-2 bg-primarytime text-white">
-                    <h5 class="card-title ">Manager Name</h5>
+                <div class="card-body p-3 mb-2 bg-primary text-white">
+                    <h5 class="card-title ">${teamArray[0].name}</h5>
                     <h5 class="card-text">Manager</h5>
                 </div>
                 <ul class="list-group  p-3  bg-light text-dark">
-                    <li class="list-group-item">ID: Manager ID</li>
-                    <a class="list-group-item" href = "mailto: Manager Email">Email: Manager Email</a>
-                    <li class="list-group-item">Office number: Manager Office Number</li>
+                    <li class="list-group-item">ID: ${teamArray[0].id}</li>
+                    <a class="list-group-item" href = "mailto: ${teamArray[0].email}">Email: ${teamArray[0].email}</a>
+                    <li class="list-group-item">Office number: ${teamArray[0].officeNumber}</li>
                 </ul>
             </div>
 
             <div class="shadow col-md-3 card">
                 <div class="card-body p-3 mb-2 bg-primary text-white">
-                    <h5 class="card-title ">Engineer Name</h5>
+                    <h5 class="card-title ">${teamArray[1].name}</h5>
                     <h5 class="card-text">Engineer</h5>
                 </div>
                 <ul class="list-group  p-3  bg-light text-dark">
-                    <li class="list-group-item">ID: Engineer ID</li>
-                    <a class="list-group-item" href = "mailto: Engineer Email">Email: Engineer Email</a>
-                    <a class="list-group-item" href = "https://www.github.com/" >GitHub: Engineer Github</a>
+                    <li class="list-group-item">ID: ${teamArray[1].id}</li>
+                    <a class="list-group-item" href = "mailto: ${teamArray[1].email}">Email: ${teamArray[1].email}</a>
+                    <a class="list-group-item" href = "https://www.github.com/${teamArray[1].github}" >GitHub: ${teamArray[1].github}</a>
                 </ul>
             </div>
 
             <div class="shadow col-md-3 card">
                 <div class="card-body p-3 mb-2 bg-primary text-white">
-                    <h5 class="card-title ">Intern Name</h5>
+                    <h5 class="card-title ">${teamArray[2].name}</h5>
                     <h5 class="card-text">Intern</h5>
                 </div>
                 <ul class="list-group  p-3  bg-light text-dark">
-                    <li class="list-group-item">ID: Inten ID</li>
-                    <a class="list-group-item" href = "mailto: Intern Email">Email: Intern Email</a>
-                    <li class="list-group-item">School: Intern School</li>
+                    <li class="list-group-item">ID: ${teamArray[2].id}</li>
+                    <a class="list-group-item" href = "mailto: ${teamArray[2].email}">Email: ${teamArray[2].email}</a>
+                    <li class="list-group-item">School: ${teamArray[2].school}</li>
                 </ul>
             </div>
         </main>
