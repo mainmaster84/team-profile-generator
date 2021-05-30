@@ -5,6 +5,8 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+const teamArray = [];
+
 const promptUser = () => {
   console.log(`
   =================
@@ -64,20 +66,21 @@ const promptUser = () => {
         }
       }
     }
-  ]);
+  ])
+  .then((answers) => {
+    const {name, id, email, officeNumber} = answers
+    const manager = new Manager(name, id, email, officeNumber);
+    teamArray.push(manager);
+    console.log(teamArray);
+  })
 };
 
-const promptProject = portfolioData => {
+const promptProject = () => {
   console.log(`
 =================
 Add a New Engineer
 =================
 `);
-
-  // If there's no 'projects' array property, create one
-  if (!portfolioData.projects) {
-    portfolioData.projects = [];
-  }
   return inquirer
     .prompt([
       {
@@ -139,27 +142,20 @@ Add a New Engineer
         default: false
       }
     ])
-    .then(projectData => {
-      portfolioData.projects.push(projectData);
-      if (projectData.confirmAddProject) {
-        return promptProject(portfolioData);
-      } else {
-        return portfolioData;
-      }
-    });
+    .then((answers) => {
+      const {name, id, email, github} = answers
+      const engineer = new Engineer(name, id, email, github);
+      teamArray.push(engineer);
+      console.log(teamArray);
+    })
 };
 
-const promptProject2 = portfolioData => {
+const promptProject2 = () => {
   console.log(`
 =================
 Add a New Intern
 =================
 `);
-
-  // If there's no 'projects' array property, create one
-  if (!portfolioData.projects) {
-    portfolioData.projects = [];
-  }
   return inquirer
     .prompt([
       {
@@ -221,20 +217,18 @@ Add a New Intern
         default: false
       }
     ])
-    .then(projectData => {
-      portfolioData.projects.push(projectData);
-      if (projectData.confirmAddProject) {
-        return promptProject2(portfolioData);
-      } else {
-        return portfolioData;
-      }
-    });
+    .then((answers) => {
+      const {name, id, email, school} = answers
+      const intern = new Intern(name, id, email, school);
+      teamArray.push(intern);
+      console.log(teamArray);
+    })
 };
 promptUser()
   .then(promptProject)
   .then(promptProject2)
-  .then(portfolioData => {
-    const pageHTML = generatePage(portfolioData);
+  .then (() => {
+    const pageHTML = generatePage(teamArray);
 
     fs.writeFile('./dist/index.html', pageHTML, err => {
       if (err) throw new Error(err);
